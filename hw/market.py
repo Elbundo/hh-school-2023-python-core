@@ -1,6 +1,6 @@
 class Market:
     def __init__(self, wines: list = None, beers: list = None) -> None:
-        pass
+        self.drinks = {drink.title: drink for drink in (wines + beers)}
 
     def has_drink_with_title(self, title=None) -> bool:
         """
@@ -9,7 +9,7 @@ class Market:
         :param title:
         :return: True|False
         """
-        pass
+        return title in self.drinks
 
     def get_drinks_sorted_by_title(self) -> list:
         """
@@ -17,7 +17,7 @@ class Market:
 
         :return: list
         """
-        pass
+        return sorted(self.drinks.values(), key=lambda d: d.title)
 
     def get_drinks_by_production_date(self, from_date=None, to_date=None) -> list:
         """
@@ -25,4 +25,4 @@ class Market:
 
         :return: list
         """
-        pass
+        return [self.drinks[title] for title in self.drinks if (self.drinks[title].production_date >= from_date) and (self.drinks[title].production_date <= to_date)]
